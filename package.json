@@ -1,0 +1,19 @@
+{
+  "name": "10m-exit-planner",
+  "version": "0.1.0",
+  "description": "Strategic planning application for exit preparation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:store": "tsx scripts/test-store-init.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
