@@ -11,16 +11,18 @@ interface PlanSidebarProps {
 }
 
 export function PlanSidebar({ onCollapseRequest }: PlanSidebarProps) {
-  const { plans, selectedPlanId, setSelectedPlan } = usePlanStore((state) => ({
+  const { plans, selectedPlanId, setSelectedPlan, getPlanProgressSummary } = usePlanStore((state) => ({
     plans: state.plans,
     selectedPlanId: state.selectedPlanId,
     setSelectedPlan: state.setSelectedPlan,
+    getPlanProgressSummary: state.getPlanProgressSummary,
   }))
 
   const selectedPlan = plans[selectedPlanId]
+  const summary = getPlanProgressSummary(selectedPlanId)
 
   const quickStats = useMemo(() => {
-    if (!selectedPlan) {
+    if (!selectedPlan || !summary) {
       return []
     }
 
@@ -33,16 +35,20 @@ export function PlanSidebar({ onCollapseRequest }: PlanSidebarProps) {
       },
       {
         label: 'Tasks Complete',
-        value: `${selectedPlan.tasksCompleted}/${selectedPlan.tasksTotal}`,
+        value: `${summary.completedTasks}/${summary.totalTasks}`,
       },
       {
         label: 'Next Milestone',
-        value: selectedPlan.nextMilestone
-          ? `${selectedPlan.nextMilestone.title} • ${formatDate(selectedPlan.nextMilestone.dueDate)}`
+        value: summary.nextMilestone
+          ? `${summary.nextMilestone.title} • ${formatDate(summary.nextMilestone.targetDate)}`
           : 'TBD',
       },
+      {
+        label: 'Milestone Progress',
+        value: `${Math.round(summary.milestoneProgress)}%`
+      },
     ]
-  }, [selectedPlan])
+  }, [selectedPlan, summary])
 
   const planEntries = useMemo(() => Object.values(plans), [plans])
 

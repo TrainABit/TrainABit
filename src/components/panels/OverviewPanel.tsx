@@ -9,12 +9,14 @@ interface OverviewPanelProps {
 }
 
 export function OverviewPanel({ isLoading = false }: OverviewPanelProps) {
-  const { selectedPlanId, plans } = usePlanStore((state) => ({
+  const { selectedPlanId, plans, getPlanProgressSummary } = usePlanStore((state) => ({
     selectedPlanId: state.selectedPlanId,
     plans: state.plans,
+    getPlanProgressSummary: state.getPlanProgressSummary,
   }))
 
   const plan = plans[selectedPlanId]
+  const summary = getPlanProgressSummary(selectedPlanId)
 
   if (isLoading) {
     return (
@@ -73,8 +75,10 @@ export function OverviewPanel({ isLoading = false }: OverviewPanelProps) {
           </div>
           <dl className="mt-4">
             <dt className="text-sm text-slate-400">Tasks Completed</dt>
-            <dd className="mt-1 text-2xl font-semibold text-white">{plan.tasksCompleted}</dd>
-            <dd className="mt-1 text-xs text-slate-500">of {plan.tasksTotal} total</dd>
+            <dd className="mt-1 text-2xl font-semibold text-white">{summary?.completedTasks ?? 0}</dd>
+            <dd className="mt-1 text-xs text-slate-500">
+              of {summary?.totalTasks ?? 0} total • {summary ? Math.round(summary.taskProgress) : 0}%
+            </dd>
           </dl>
         </div>
 
@@ -87,10 +91,10 @@ export function OverviewPanel({ isLoading = false }: OverviewPanelProps) {
           <dl className="mt-4">
             <dt className="text-sm text-slate-400">Next Milestone</dt>
             <dd className="mt-1 text-sm font-semibold text-white">
-              {plan.nextMilestone ? plan.nextMilestone.title : 'TBD'}
+              {summary?.nextMilestone ? summary.nextMilestone.title : 'TBD'}
             </dd>
             <dd className="mt-1 text-xs text-slate-500">
-              {plan.nextMilestone ? formatDate(plan.nextMilestone.dueDate) : '—'}
+              {summary?.nextMilestone ? formatDate(summary.nextMilestone.targetDate) : '—'}
             </dd>
           </dl>
         </div>

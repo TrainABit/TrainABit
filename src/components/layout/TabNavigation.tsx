@@ -1,39 +1,13 @@
 import { Tab } from '@headlessui/react'
-import type { ComponentType, ReactNode } from 'react'
-import {
-  HomeIcon,
-  FlagIcon,
-  ClipboardDocumentListIcon,
-  BanknotesIcon,
-  ChartBarIcon,
-  ExclamationTriangleIcon,
-  DocumentTextIcon,
-  FolderOpenIcon,
-} from '@heroicons/react/24/outline'
+import type { ReactNode } from 'react'
 import type { TabType } from '../../types'
-
-interface TabMeta {
-  id: TabType
-  label: string
-  icon: ComponentType<{ className?: string }>
-}
+import { tabDefinitions } from '../../constants/tabs'
 
 interface TabNavigationProps {
   activeTab: TabType
   onChange: (tab: TabType) => void
   children: ReactNode
 }
-
-export const tabDefinitions: TabMeta[] = [
-  { id: 'overview', label: 'Overview', icon: HomeIcon },
-  { id: 'milestones', label: 'Milestones', icon: FlagIcon },
-  { id: 'tasks', label: 'Tasks', icon: ClipboardDocumentListIcon },
-  { id: 'budget', label: 'Budget', icon: BanknotesIcon },
-  { id: 'kpis', label: 'KPIs', icon: ChartBarIcon },
-  { id: 'risks', label: 'Risks', icon: ExclamationTriangleIcon },
-  { id: 'notes', label: 'Notes', icon: DocumentTextIcon },
-  { id: 'resources', label: 'Resources', icon: FolderOpenIcon },
-]
 
 export function TabNavigation({ activeTab, onChange, children }: TabNavigationProps) {
   const selectedIndex = tabDefinitions.findIndex((tab) => tab.id === activeTab)
