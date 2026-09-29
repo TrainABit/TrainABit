@@ -1,6 +1,6 @@
 ### Hi, I'm Florian 👋
 
-Self-taught Python developer from Germany. I build and run my own software end to end: real-time market data, speech-to-text pipelines and self-hosted infrastructure. I work with Claude Code, Codex and GitHub Copilot every day, and I own the architecture, reviews, tests and deployment.
+Self-taught Python developer from Germany. I build and run my own software end to end: real-time market data, speech-to-text pipelines and self-hosted infrastructure. I work with Claude Code and Codex every day, and I own the architecture, reviews, tests and deployment.
 
 Crypto derivatives trader since 2020. Previously a dual-study student (Business Informatics) at Syntax Systems, where I gave SAP product demos to customers.
 
