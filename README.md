@@ -4,7 +4,7 @@ Self-taught Python developer from Germany. I build and run my own software end t
 
 Crypto derivatives trader since 2020. Previously a dual-study student (Business Informatics) at Syntax Systems, where I gave SAP product demos to customers.
 
-📍 Germany · open to relocating to London · [LinkedIn](https://www.linkedin.com/in/floriangrs)
+📍 Germany · open to relocating to London, San Francisco, New York or Asia · [LinkedIn](https://www.linkedin.com/in/floriangrs)
 
 ---
 
